@@ -1,5 +1,6 @@
- import User from '../models/user.models.js'
+ import {User} from '../models/user.models.js'
  import bcrypt from 'bcryptjs'
+ import { generateToken } from '../utils/generateToken.js';
 
  export const register = async (req,res)=>{
     try {
@@ -60,7 +61,7 @@ export const login = async (req,res)=>{
        }
 
        generateToken(res,user, `Welcome back ${user.name}`);
-       
+
     } catch (error) {
         console.log(error);
         return res.status(500).json({
